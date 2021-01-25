@@ -3,7 +3,7 @@
 import csv
 import os
 from config import db
-from models import Videogame, Language, Genre
+from models import *
 
 LANGUAGES = {}
 def build_db(filename):
