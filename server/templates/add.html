@@ -1,0 +1,36 @@
+{% extends "base.html"%}
+
+{% block content %} 
+
+<div>
+    <h1>Add Video Games</h1>
+    <div>
+        <form method='post'>
+            <div>
+                <label for="id">ID</label>
+                <input type="text" name="id"></input>
+            </div>
+            <div>
+                <label for="name">Name</label>
+                <input type="text" name="name"></input>
+            </div>
+            <div>
+                <label for="date">Release Date</label>
+                <input type="text" name="date"></input>
+            </div>
+            <div>
+                <label for="languages">Language(s) (separate by comma)</label>
+                <input type="text" name="languages"></input>
+            </div>
+            <div>
+                <label for="genres">Genre(s) (separate by comma)</label>
+                <input type="text" name="genres"></input>
+            </div>
+            <div>
+                <input type="submit" value="Add" id="btnAdd"></input>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
