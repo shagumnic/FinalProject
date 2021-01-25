@@ -3,7 +3,7 @@
 import csv
 import os
 from config import db
-from models import Store
+from models import *
 
 
 def build_db(filename):
