@@ -3,9 +3,9 @@
 import csv
 import os
 from config import db
-from models import Store
+from models import Videogame, Language, Genre
 
-
+LANGUAGES = {}
 def build_db(filename):
     # Delete existing DB
     if os.path.exists(f"{filename}.sqlite3"):
@@ -20,12 +20,14 @@ def build_db(filename):
         next(content)
     
         for line in content:
-            store = Store(
-                name = line[0],
-                category = line[1],
-                price = line[2]
+            videogame = Videogame(
+                steamId = line[0],
+                name = line[1],
+                release_date = line[2]
+                
             )
-            db.session.add(store)
+
+            db.session.add(videogame)
         db.session.commit()
 
 
