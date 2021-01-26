@@ -6,6 +6,10 @@ from build_db import *
 from csv import writer
 import sqlite3
 from flask_cors import CORS, cross_origin
+import json
+
+app = Flask(__name__)
+cors = CORS(app)
 
 @app.route("/", methods=["GET", "POST"])
 def main():
@@ -30,7 +34,12 @@ def add():
 
 @app.route("/list", methods=["GET", "POST"])
 def listAll():
-        return render_template("list.html")
+        conn = sqlite3.connect('video_games_data.sqlite3')
+        cur = conn.cursor()
+        cur.execute("select * from VIDEOGAMES")
+        rows = cur.fetchall()
+        results = data_cleaning(rows)
+        return render_template("list.html", results=results['results'])
 
 @app.route("/api/v1/", methods=["GET"])
 @cross_origin()
@@ -41,19 +50,26 @@ def send_data():
                 #conn = psycopg2.connect("sqlite:///" + os.path.join(this_dir, "video_games_data.sqlite3"))
                 conn = sqlite3.connect('video_games_data.sqlite3')
                 cur = conn.cursor()
-                cur.execute("select * from VIDEOGAMES where name like ? limit 5", (name,))
+                cur.execute("select * from VIDEOGAMES where name like ?", (name,))
                 rows = cur.fetchall()
-                return_json = {'results': []}
-                for row in rows: 
-                        lang_ids = row[3].split(", ")
-                        #langs = '(' + langs + ')'
-                        cur.execute('select language from LANGUAGES where id in (%s)' % ','.join('?'*len(lang_ids)), lang_ids)
-                        langs = cur.fetchall()
-                        langs = [x[0] for x in langs]
-                        genre_ids = row[4].split(", ")
-                        cur.execute('select language from LANGUAGES where id in (%s)' % ','.join('?'*len(genre_ids)), genre_ids)
-                        genres = cur.fetchall()
-                        genres = [x[0] for x in genres]
-                        result = {'steam_id': row[0], 'name': row[1], 'release_date': row[2], 'languages':langs, 'genres': genres}
-                        return_json['results'].append(result)
+                return_json = data_cleaning(rows)
                 return jsonify(return_json)
+        return jsonify({'results':[]})
+
+def data_cleaning(rows):
+        conn = sqlite3.connect('video_games_data.sqlite3')
+        cur = conn.cursor()
+        return_json = {'results': []}
+        for row in rows: 
+                lang_ids = row[3].split(", ")
+                #langs = '(' + langs + ')'
+                cur.execute('select language from LANGUAGES where id in (%s)' % ','.join('?'*len(lang_ids)), lang_ids)
+                langs = cur.fetchall()
+                langs = [x[0] for x in langs]
+                genre_ids = row[4].split(", ")
+                cur.execute('select genre from GENRES where id in (%s)' % ','.join('?'*len(genre_ids)), genre_ids)
+                genres = cur.fetchall()
+                genres = [x[0] for x in genres]
+                result = {'steam_id': row[0], 'name': row[1], 'release_date': row[2], 'languages':langs, 'genres': genres}
+                return_json['results'].append(result)
+        return return_json
