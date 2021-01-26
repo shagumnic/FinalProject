@@ -4,7 +4,6 @@ import csv
 import os
 from config import db
 from models import *
-from sqlalchemy_utils import database_exists, create_database, drop_database
 import urllib.parse
 
 LANGUAGES = {'Arabic': 1, 'Bulgarian': 2, 'Simplified Chinese': 3, 'Czech': 4, "Danish": 5, "Dutch": 6, 
