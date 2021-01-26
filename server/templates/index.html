@@ -8,8 +8,8 @@
         <form method='post'>
             <div>
                 <label for="videogame">Enter name of a game</label>
-                <input type="text" name="videogame"></input>
-                <input type="submit" value="Submit"></input>
+                <input type="text" name="videogame" id="videogame"></input>
+                <input type="button" value="Submit" onclick="getVideoGameData()"></input>
             </div>
             <div>
                 <input type="submit" value="Add" name="add" id="btnAdd"></input>
@@ -18,6 +18,19 @@
                 <input type="submit" value="List all" name="listAll" id="btnList"></input>
             </div>
         </form>
+    </div>
+    <div>
+        <table>
+            <thead>
+                <th>Steam ID</th>
+                <th>Name</th>
+                <th>Release Date</th>
+                <th>Languages</th>
+                <th>Genres</th>
+            </thead>
+            <tbody id="tblBody">
+            </tbody>
+        </table>
     </div>
 </div>
 
