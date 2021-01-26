@@ -1,0 +1,24 @@
+{% extends "base.html"%}
+
+{% block content %} 
+
+<div>
+    <h1>Welcome to Video Game selector!</h1>
+    <div>
+        <form method='post'>
+            <div>
+                <label for="videogame">Enter name of a game</label>
+                <input type="text" name="videogame"></input>
+                <input type="submit" value="Submit"></input>
+            </div>
+            <div>
+                <input type="submit" value="Add" name="add" id="btnAdd"></input>
+            </div>
+            <div>
+                <input type="submit" value="List all" name="listAll" id="btnList"></input>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
