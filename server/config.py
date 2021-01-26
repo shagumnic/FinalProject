@@ -9,7 +9,7 @@ from flask_marshmallow import Marshmallow
 app = Flask(__name__)
 
 this_dir = os.path.abspath(os.path.dirname(__file__))
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:////" + os.path.join(this_dir, "videogames.sqlite3")
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + os.path.join(this_dir, "video_games_data.sqlite3")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SQLALCHEMY_ECHO"] = True
 

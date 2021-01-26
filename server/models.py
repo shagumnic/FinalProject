@@ -1,12 +1,16 @@
 """Data model"""
 
 from config import db, ma
+#from sqlalchemy.dialects.postgresql import ARRAY
 
 class Videogame(db.Model):
-    __tablename__ = "STORE"
+    __tablename__ = "VIDEOGAMES"
     steam_id = db.Column(db.String, primary_key=True)
     name = db.Column(db.String)
     release_date = db.Column(db.String)
+    languages_id = db.Column(db.String)
+    genres_id = db.Column(db.String)
+
 
 class Language(db.Model):
     __tablename__ ="LANGUAGES"

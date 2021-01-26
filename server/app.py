@@ -8,4 +8,3 @@ from csv import writer
 @app.route("/", methods=["GET", "POST"])
 def index():
         return render_template("base.html")
-
