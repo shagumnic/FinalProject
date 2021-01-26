@@ -1,6 +1,7 @@
 import psycopg2
 import os
 import sqlite3
+import json
 
 this_dir = os.path.abspath(os.path.dirname(__file__))
 name = 'grand'
@@ -24,3 +25,6 @@ for row in rows:
     result = {'steam_id': row[0], 'name': row[1], 'release_date': row[2], 'languages':langs, 'genres': genres}
     return_json['results'].append(result)
 print(return_json)
+results = json.dumps(return_json)
+for result in results['results'] :
+    print(result)

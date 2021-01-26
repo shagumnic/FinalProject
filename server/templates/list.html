@@ -14,8 +14,22 @@
                 <th>Genres</th>
             </thead>
             <tbody>
+                {% for game in results %}
+                <tr>
+                    <td>{{ game.steam_id }}</td>
+                    <td>{{ game.name }}</td>
+                    <td>{{ game.release_date }}</td>
+                    <td>{{ game.languages }}</td>
+                    <td>{{ game.genres}}</td>
+                </tr>
+                {% endfor %}
             </tbody>
         </table>
+        <script>
+            $(document).ready(function () {
+                $("#tblList").DataTable();
+            });
+        </script>
     </div>
 </div>
 

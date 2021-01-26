@@ -1,0 +1,37 @@
+<html>
+  <head>
+      <title>Final Projet</title>
+      <script src="script.js"></script>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <link href="//cdn.muicss.com/mui-0.10.1/css/mui.min.css" rel="stylesheet" type="text/css" />
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div>
+        <form>
+            <label for="name">Game's name: </label>
+            <input type="text" name="name" id="name" required>
+            <button type="button" id="fetchButton" onclick="fetchData()">Search</button>
+        </form>
+    </div>
+    <div>
+        <h1>Result Games</h1>
+        <div>
+            <table id="tblList">
+                <thead>
+                    <th>Steam ID</th>
+                    <th>Name</th>
+                    <th>Release Date</th>
+                    <th>Languages</th>
+                    <th>Genres</th>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="//cdn.muicss.com/mui-0.10.1/js/mui.min.js"></script>
+  </body>
+</html>
