@@ -14,7 +14,7 @@ async function fetchData() {
     }
 
     else {
-        let data = await fetch(`http://127.0.0.1:5000/api/v1/?name=${name}`).then(response => response.json());
+        let data = await fetch(`https://thomso03.pythonanywhere.com/api/v1/?name=${name}`).then(response => response.json());
         if (data.results=="") {
             errorMsg.innerText = "No game with this title";
         }
