@@ -9,17 +9,19 @@
         crossorigin="anonymous"></script>
   </head>
   <body>
-    <div>
-        <form>
-            <label for="name">Game's name: </label>
-            <input type="text" name="name" id="name" required>
-            <button type="button" id="fetchButton" onclick="fetchData()">Search</button>
+    <div id="form">
+        <form class="mui-form--inline">
+            <div class="mui-textfield mui-textfield--float-label">
+                <input type="text" name="name" id="name" required>
+                <label for="name">Game's name: </label>
+            </div>
+            <button class="mui-btn mui-btn--raised" type="button" id="fetchButton" onclick="fetchData()">Search</button>
         </form>
     </div>
     <div>
         <h1>Result Games</h1>
         <div>
-            <table id="tblList">
+            <table class="mui-table"id="tblList">
                 <thead>
                     <th>Steam ID</th>
                     <th>Name</th>
