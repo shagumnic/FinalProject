@@ -29,7 +29,26 @@ def index():
 
 @app.route("/add", methods=["GET", "POST"])
 def add():
-        return render_template("add.html")
+        if request.method == "POST":
+                conn = sqlite3.connect('video_games_data.sqlite3')
+                cur = conn.cursor()
+                cur.execute("select * from VIDEOGAMES where steam_id=?", (request.form.get('steam_id'),))
+                rows = cur.fetchall()
+                if rows :
+                        return render_template("add.html", message="The game's steam ID you're trying to add is already exists")
+                language_ids = ", ".join(request.form.getlist('languages'))
+                genre_ids = ", ".join(request.form.getlist('genres'))
+                new_game = Videogame(
+                        steam_id = request.form.get('steam_id'),
+                        name = request.form.get('name'),
+                        release_date = request.form.get('date'),
+                        languages_id = language_ids,
+                        genres_id = genre_ids
+                )
+                db.session.add(new_game)
+                db.session.commit()
+                return render_template("add.html", message="The game has been successfully added")
+        return render_template("add.html", message=None)
 
 
 @app.route("/list", methods=["GET", "POST"])

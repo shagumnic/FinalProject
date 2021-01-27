@@ -1,36 +1,114 @@
 {% extends "base.html"%}
 
 {% block content %} 
-
+{% if message %}
+    <div class="mui-row mui--bg-primary">
+        {{message}}
+    </div>
+{% endif %}
 <div>
     <h1>Add Video Games</h1>
     <div>
-        <form method='post'>
+        <form method='POST' action='/add' id="newGame">
             <div>
-                <label for="id">ID</label>
-                <input type="text" name="id"></input>
+                <label for="steam_id">ID</label>
+                <input type="text" name="steam_id" id="steam_id" required></input>
             </div>
             <div>
                 <label for="name">Name</label>
-                <input type="text" name="name"></input>
+                <input type="text" name="name" id="name" required></input>
             </div>
             <div>
-                <label for="date">Release Date</label>
-                <input type="text" name="date"></input>
+                <label for="date">Release Date (MM-DD-YYYY)</label>
+                <input type="text" name="date" id="date" required></input>
             </div>
             <div>
-                <label for="languages">Language(s) (separate by comma)</label>
-                <input type="text" name="languages"></input>
+                <label for="languages">Language(s)</label>
+                <input type="checkbox" value="1" name="languages">Arabic</input>
+                <input type="checkbox" value="2" name="languages">Bulgarian</input>
+                <input type="checkbox" value="3" name="languages">Simplified Chinese</input>
+                <input type="checkbox" value="29" name="languages">Traditional Chinese</input>
+                <input type="checkbox" value="4" name="languages">Czech</input>
+                <input type="checkbox" value="5" name="languages">Danish</input>
+                <input type="checkbox" value="6" name="languages">Dutch</input>
+                <input type="checkbox" value="7" name="languages">English</input>
+                <input type="checkbox" value="8" name="languages">Finnish</input>
+                <input type="checkbox" value="9" name="languages">French</input>
+                <input type="checkbox" value="10" name="languages">German</input>
+                <input type="checkbox" value="11" name="languages">Greek</input>
+                <input type="checkbox" value="12" name="languages">Hungarian</input>
+                <input type="checkbox" value="13" name="languages">Italian</input>
+                <input type="checkbox" value="14" name="languages">Japanese</input>
+                <input type="checkbox" value="15" name="languages">Korean</input>
+                <input type="checkbox" value="16" name="languages">Norwegian</input>
+                <input type="checkbox" value="17" name="languages">Polish</input>
+                <input type="checkbox" value="18" name="languages">Portuguese</input>
+                <input type="checkbox" value="19" name="languages">Portuguese - Brazil</input>
+                <input type="checkbox" value="20" name="languages">Romanian</input>
+                <input type="checkbox" value="21" name="languages">Russian</input>
+                <input type="checkbox" value="22" name="languages">Spanish - Spain</input>
+                <input type="checkbox" value="23" name="languages">Spanish - Latin America</input>
+                <input type="checkbox" value="24" name="languages">Swedish</input>
+                <input type="checkbox" value="25" name="languages">Thai</input>
+                <input type="checkbox" value="26" name="languages">Turkish</input>
+                <input type="checkbox" value="27" name="languages">Ukrainian</input>
+                <input type="checkbox" value="28" name="languages">Vietnamese</input>
             </div>
             <div>
-                <label for="genres">Genre(s) (separate by comma)</label>
-                <input type="text" name="genres"></input>
+                <label for="genres">Genre(s)</label>
+                <input type="checkbox" value="1" name="genres">Action</input>
+                <input type="checkbox" value="2" name="genres">Adventure</input>
+                <input type="checkbox" value="3" name="genres">Casual</input>
+                <input type="checkbox" value="4" name="genres">Indie</input>
+                <input type="checkbox" value="5" name="genres">Massively Multiplayer</input>
+                <input type="checkbox" value="6" name="genres">Racing</input>
+                <input type="checkbox" value="7" name="genres">RPG</input>
+                <input type="checkbox" value="8" name="genres">Simulation</input>
+                <input type="checkbox" value="9" name="genres">Sports</input>
+                <input type="checkbox" value="10" name="genres">Strategy</input>
+
             </div>
             <div>
-                <input type="submit" value="Add" id="btnAdd"></input>
+                <input type="button" value="Add" id="btnAdd"></input>
             </div>
         </form>
+
+        <script>
+            $("#btnAdd").click(function(e){
+                var steam_id = $("input[id=steam_id]").val();
+                var date = $('input[id=date]').val()
+                console.log(steam_id)
+                var id_valid = /\d+$/;
+                var date_valid = new RegExp('^(1[0-2]|0[1-9])-(3[01]|[12][0-9]|0[1-9])-[0-9]{4}$');
+                if (id_valid.test(steam_id) && date_valid.test(date)) {
+                    var number_of_checked_language= $("input[name=languages]:checked").length;
+                    var number_of_checked_genre = $("input[name=genres]:checked").length;
+                    if(number_of_checked_language==0 && number_of_checked_genre==0){
+                        alert("Please select at leat one language and at least one genre");
+                    }
+                    else if (number_of_checked_language==0) {
+                        alert("Please select at leat one language")
+                    }
+                    else if (number_of_checked_genre==0) {
+                        alert("Please select at least one genre")
+                    }
+                    else {
+                        $("#newGame").submit();
+                    }
+                }
+                else if (id_valid.test(steam_id)){
+                    alert('Please enter a valid date');
+                }
+                else if (date_valid.test(date)) {
+                    alert('Please enter a valid steam Id');
+                }
+                else {
+                    alert('Please enter a valid steam Id and date');
+                }
+            });
+        </script>
     </div>
 </div>
+
 
 {% endblock %}
