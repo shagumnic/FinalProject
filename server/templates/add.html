@@ -237,35 +237,41 @@
         <script>
             $("#btnAdd").click(function(e){
                 var steam_id = $("input[id=steam_id]").val();
-                var date = $('input[id=date]').val()
-                console.log(steam_id)
+                var date = $('input[id=date]').val();
+                var name = $('input[id=name]').val();
                 var id_valid = /\d+$/;
                 var date_valid = new RegExp('^(1[0-2]|0[1-9])-(3[01]|[12][0-9]|0[1-9])-[0-9]{4}$');
-                if (id_valid.test(steam_id) && date_valid.test(date)) {
-                    var number_of_checked_language= $("input[name=languages]:checked").length;
-                    var number_of_checked_genre = $("input[name=genres]:checked").length;
-                    if(number_of_checked_language==0 && number_of_checked_genre==0){
-                        alert("Please select at leat one language and at least one genre");
+                if (name) {
+                    if (id_valid.test(steam_id) && date_valid.test(date)) {
+                        var number_of_checked_language= $("input[name=languages]:checked").length;
+                        var number_of_checked_genre = $("input[name=genres]:checked").length;
+                        if(number_of_checked_language==0 && number_of_checked_genre==0){
+                            alert("Please select at leat one language and at least one genre");
+                        }
+                        else if (number_of_checked_language==0) {
+                            alert("Please select at leat one language")
+                        }
+                        else if (number_of_checked_genre==0) {
+                            alert("Please select at least one genre")
+                        }
+                        else {
+                            $("#newGame").submit();
+                        }
                     }
-                    else if (number_of_checked_language==0) {
-                        alert("Please select at leat one language")
+                    else if (id_valid.test(steam_id)){
+                        alert('Please enter a valid date');
                     }
-                    else if (number_of_checked_genre==0) {
-                        alert("Please select at least one genre")
+                    else if (date_valid.test(date)) {
+                        alert('Please enter a valid steam Id');
                     }
                     else {
-                        $("#newGame").submit();
+                        alert('Please enter a valid steam Id and date');
                     }
                 }
-                else if (id_valid.test(steam_id)){
-                    alert('Please enter a valid date');
-                }
-                else if (date_valid.test(date)) {
-                    alert('Please enter a valid steam Id');
-                }
                 else {
-                    alert('Please enter a valid steam Id and date');
+                    alert('Please enter a valid name');
                 }
+                
             });
         </script>
     </div>
