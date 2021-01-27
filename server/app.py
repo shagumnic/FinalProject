@@ -23,6 +23,17 @@ def index():
                         return redirect(url_for('add'))
                 if request.form.get("listAll") == "List all":
                         return redirect(url_for('listAll'))
+                if request.form.get("submit") == "Submit":
+                        name = request.form['videogame']
+                        conn = sqlite3.connect('video_games_data.sqlite3')
+                        cur = conn.cursor()
+                        cur.execute("select * from VIDEOGAMES where name like '%{}%'".format(name))
+                        rows = cur.fetchall()
+                        if not rows:
+                                return render_template("error.html")
+                        results = data_cleaning(rows)
+                        return render_template("index.html", results=results['results'])
+
 
         return render_template("index.html")
 
