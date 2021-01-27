@@ -2,74 +2,235 @@
 
 {% block content %} 
 {% if message %}
-    <div class="mui-row mui--bg-primary">
+    <h3 class="alert alert-info text-center">
         {{message}}
-    </div>
+    </h3>
 {% endif %}
-<div>
+<div class="mui-container">
     <h1>Add Video Games</h1>
+    <form method='POST' action='/add' id="newGame" class="mui-form">
     <div>
-        <form method='POST' action='/add' id="newGame" class="mui-form">
-            <div>
+        <div class="row">
+            <div class="col-2 mui-textfield">
                 <label for="steam_id">ID</label>
-                <input type="text" name="steam_id" id="steam_id" required></input>
+                <input type="text" min="0" name="steam_id" id="steam_id" required></input>
             </div>
-            <div>
+            <div class="col-2 mui-textfield">
                 <label for="name">Name</label>
                 <input type="text" name="name" id="name" required></input>
             </div>
-            <div>
+            <div class="col-3 mui-textfield">
                 <label for="date">Release Date (MM-DD-YYYY)</label>
                 <input type="text" name="date" id="date" required></input>
             </div>
-            <div>
-                <label for="languages">Language(s)</label>
-                <input type="checkbox" value="1" name="languages">Arabic</input>
-                <input type="checkbox" value="2" name="languages">Bulgarian</input>
-                <input type="checkbox" value="3" name="languages">Simplified Chinese</input>
-                <input type="checkbox" value="29" name="languages">Traditional Chinese</input>
-                <input type="checkbox" value="4" name="languages">Czech</input>
-                <input type="checkbox" value="5" name="languages">Danish</input>
-                <input type="checkbox" value="6" name="languages">Dutch</input>
-                <input type="checkbox" value="7" name="languages">English</input>
-                <input type="checkbox" value="8" name="languages">Finnish</input>
-                <input type="checkbox" value="9" name="languages">French</input>
-                <input type="checkbox" value="10" name="languages">German</input>
-                <input type="checkbox" value="11" name="languages">Greek</input>
-                <input type="checkbox" value="12" name="languages">Hungarian</input>
-                <input type="checkbox" value="13" name="languages">Italian</input>
-                <input type="checkbox" value="14" name="languages">Japanese</input>
-                <input type="checkbox" value="15" name="languages">Korean</input>
-                <input type="checkbox" value="16" name="languages">Norwegian</input>
-                <input type="checkbox" value="17" name="languages">Polish</input>
-                <input type="checkbox" value="18" name="languages">Portuguese</input>
-                <input type="checkbox" value="19" name="languages">Portuguese - Brazil</input>
-                <input type="checkbox" value="20" name="languages">Romanian</input>
-                <input type="checkbox" value="21" name="languages">Russian</input>
-                <input type="checkbox" value="22" name="languages">Spanish - Spain</input>
-                <input type="checkbox" value="23" name="languages">Spanish - Latin America</input>
-                <input type="checkbox" value="24" name="languages">Swedish</input>
-                <input type="checkbox" value="25" name="languages">Thai</input>
-                <input type="checkbox" value="26" name="languages">Turkish</input>
-                <input type="checkbox" value="27" name="languages">Ukrainian</input>
-                <input type="checkbox" value="28" name="languages">Vietnamese</input>
+        </div>
+            <div class="row">
+                <div class="col-3">
+                    <h3>Language(s)</h3>
+                    <div class="mui-checkbox">
+                        <label>
+                            <input type="checkbox" value="1" name="languages"> Arabic
+                        </label>
+                    </div>
+                    <div class="mui-checkbox">
+                        <label>
+                            <input type="checkbox" value="2" name="languages"> Bulgarian
+                        </label>
+                    </div>
+                    <div class="mui-checkbox">
+                        <label>
+                            <input type="checkbox" value="3" name="languages"> Simplified Chinese
+                        </label>
+                    </div>
+                    <div class="mui-checkbox">
+                        <label>
+                            <input type="checkbox" value="29" name="languages"> Traditional Chinese
+                        </label>
+                    </div>
+                    <div class="mui-checkbox">
+                        <label>
+                            <input type="checkbox" value="4" name="languages"> Czech
+                        </label>
+                    </div>
+                    <div class="mui-checkbox">
+                        <label>
+                            <input type="checkbox" value="5" name="languages"> Danish
+                        </label>
+                    </div>
+                    <div class="mui-checkbox">
+                        <label>
+                            <input type="checkbox" value="6" name="languages"> Dutch
+                        </label>
+                    </div>
+                    <div class="mui-checkbox">
+                        <label>
+                            <input type="checkbox" value="7" name="languages"> English
+                        </label>
+                    </div>
+                    <div class="mui-checkbox">
+                        <label>
+                            <input type="checkbox" value="8" name="languages"> Finnish
+                        </label>
+                    </div>
+                    <div class="mui-checkbox">
+                        <label>
+                            <input type="checkbox" value="9" name="languages"> French
+                        </label>
+                    </div>
+                    <div class="mui-checkbox">
+                        <label>
+                            <input type="checkbox" value="10" name="languages"> German
+                        </label>
+                    </div>
+                    <div class="mui-checkbox">
+                        <label>
+                            <input type="checkbox" value="11" name="languages"> Greek
+                        </label>
+                    </div>
+                    <div class="mui-checkbox">
+                        <label>
+                            <input type="checkbox" value="12" name="languages"> Hungarian
+                        </label>
+                    </div>
+                    <div class="mui-checkbox">
+                        <label>
+                            <input type="checkbox" value="13" name="languages"> Italian
+                        </label>
+                    </div>
+                    <div class="mui-checkbox">
+                        <label>
+                            <input type="checkbox" value="14" name="languages"> Japanese
+                        </label>
+                    </div>
+                    <div class="mui-checkbox">
+                        <label>
+                            <input type="checkbox" value="15" name="languages"> Korean
+                        </label>
+                    </div>
+                    <div class="mui-checkbox">
+                        <label>
+                            <input type="checkbox" value="16" name="languages"> Norwegian
+                        </label>
+                    </div>
+                    <div class="mui-checkbox">
+                        <label>
+                            <input type="checkbox" value="17" name="languages"> Polish
+                        </label>
+                    </div>
+                    <div class="mui-checkbox">
+                        <label>
+                            <input type="checkbox" value="18" name="languages"> Portuguese
+                        </label>
+                    </div>
+                    <div class="mui-checkbox">
+                        <label>
+                            <input type="checkbox" value="19" name="languages"> Portuguese - Brazil
+                        </label>
+                    </div>
+                    <div class="mui-checkbox">
+                        <label>
+                            <input type="checkbox" value="20" name="languages"> Romanian
+                        </label>
+                    </div>
+                    <div class="mui-checkbox">
+                        <label>
+                            <input type="checkbox" value="21" name="languages"> Russian
+                        </label>
+                    </div>
+                    <div class="mui-checkbox">
+                        <label>
+                            <input type="checkbox" value="22" name="languages"> Spanish - Spain
+                        </label>
+                    </div>
+                    <div class="mui-checkbox">
+                        <label>
+                            <input type="checkbox" value="23" name="languages"> Spanish - Latin America
+                        </label>
+                    </div>
+                    <div class="mui-checkbox">
+                        <label>
+                            <input type="checkbox" value="24" name="languages"> Swedish
+                        </label>
+                    </div>
+                    <div class="mui-checkbox">
+                        <label>
+                            <input type="checkbox" value="25" name="languages"> Thai
+                        </label>
+                    </div>
+                    <div class="mui-checkbox">
+                        <label>
+                            <input type="checkbox" value="26" name="languages"> Turkish
+                        </label>
+                    </div>
+                    <div class="mui-checkbox">
+                        <label>
+                            <input type="checkbox" value="27" name="languages"> Ukrainian
+                        </label>
+                    </div>
+                    <div class="mui-checkbox">
+                        <label>
+                            <input type="checkbox" value="28" name="languages"> Vietnamese
+                        </label>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <h3>Genre(s)</h3>
+                    <div class="mui-checkbox">
+                        <label>
+                            <input type="checkbox" value="1" name="genres"> Action
+                        </label>
+                    </div>
+                    <div class="mui-checkbox">
+                        <label>
+                            <input type="checkbox" value="2" name="genres"> Adventure
+                        </label>
+                    </div>
+                    <div class="mui-checkbox">
+                        <label>
+                            <input type="checkbox" value="3" name="genres"> Casual
+                        </label>
+                    </div>
+                    <div class="mui-checkbox">
+                        <label>
+                            <input type="checkbox" value="4" name="genres"> Indie
+                        </label>
+                    </div>
+                    <div class="mui-checkbox">
+                        <label>
+                            <input type="checkbox" value="5" name="genres"> Massively Multiplayer
+                        </label>
+                    </div>
+                    <div class="mui-checkbox">
+                        <label>
+                            <input type="checkbox" value="6" name="genres"> Racing
+                        </label>
+                    </div>
+                    <div class="mui-checkbox">
+                        <label>
+                            <input type="checkbox" value="7" name="genres"> RPG
+                        </label>
+                    </div>
+                    <div class="mui-checkbox">
+                        <label>
+                            <input type="checkbox" value="8" name="genres"> Simulation
+                        </label>
+                    </div>
+                    <div class="mui-checkbox">
+                        <label>
+                            <input type="checkbox" value="9" name="genres"> Sports
+                        </label>
+                    </div>
+                    <div class="mui-checkbox">
+                        <label>
+                            <input type="checkbox" value="10" name="genres"> Strategy
+                        </label>
+                    </div>
+                </div>
             </div>
-            <div>
-                <label for="genres">Genre(s)</label>
-                <input type="checkbox" value="1" name="genres">Action</input>
-                <input type="checkbox" value="2" name="genres">Adventure</input>
-                <input type="checkbox" value="3" name="genres">Casual</input>
-                <input type="checkbox" value="4" name="genres">Indie</input>
-                <input type="checkbox" value="5" name="genres">Massively Multiplayer</input>
-                <input type="checkbox" value="6" name="genres">Racing</input>
-                <input type="checkbox" value="7" name="genres">RPG</input>
-                <input type="checkbox" value="8" name="genres">Simulation</input>
-                <input type="checkbox" value="9" name="genres">Sports</input>
-                <input type="checkbox" value="10" name="genres">Strategy</input>
-
+            <div class="row">
+            <div class="col">
+                <input class="mui-btn mui-btn--raised" type="button" value="Add" id="btnAdd"></input>
             </div>
-            <div>
-                <input type="button" value="Add" id="btnAdd"></input>
             </div>
         </form>
 
@@ -108,6 +269,7 @@
             });
         </script>
     </div>
+</div>
 </div>
 
 

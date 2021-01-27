@@ -2,25 +2,26 @@
 
 {% block content %} 
 
-<div>
+<div class="mui-container">
     <h1>Welcome to Video Game selector!</h1>
     <div>
-        <form method='post'>
-            <div>
+        <form method='post' class="mui-form--inline">
+            <div class="mui-textfield">
                 <label for="videogame">Enter name of a game</label>
                 <input type="text" name="videogame" id="videogame"></input>
-                <input type="submit" value="Submit" name="submit" id="btnSub"></input>
             </div>
-            <div>
-                <input type="submit" value="Add" name="add" id="btnAdd"></input>
-            </div>
-            <div>
-                <input type="submit" value="List all" name="listAll" id="btnList"></input>
-            </div>
+            <input class="mui-btn mui-btn--raised" type="submit" value="Submit" name="submit" id="btnSub"></input>
+            <input type="submit" class="mui-btn mui-btn--flat mui-btn--raised mui-btn--primary" value="Add Game" name="add" id="btnAdd"></input>
+            <input type="submit" class="mui-btn mui-btn--flat mui-btn--raised mui-btn--primary" value="List all" name="listAll" id="btnList"></input>
         </form>
     </div>
+    {% if message %}
+    <h3 class="alert alert-info text-center">
+        {{message}}
+    </h3>
+    {% endif %}
     <div>
-        <table>
+        <table class="mui-table mui-table--bordered">
             <thead>
                 <th>Steam ID</th>
                 <th>Name</th>

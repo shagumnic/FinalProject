@@ -14,8 +14,11 @@ async function fetchData() {
     }
 
     else {
-        div.removeChild(errorMsg);
         let data = await fetch(`http://127.0.0.1:5000/api/v1/?name=${name}`).then(response => response.json());
+        if (data.results=="") {
+            errorMsg.innerText = "No game with this title";
+        }
+        div.innerText = "Successfully found game";
         let tbody = document.querySelector('#tblList > tbody');
         for (let result of data.results) {
             let tr = document.createElement('tr');

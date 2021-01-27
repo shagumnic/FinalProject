@@ -19,7 +19,7 @@ def main():
 @app.route("/index", methods=["GET", "POST"])
 def index():
         if request.method == "POST":
-                if request.form.get("add") == "Add":
+                if request.form.get("add") == "Add Game":
                         return redirect(url_for('add'))
                 if request.form.get("listAll") == "List all":
                         return redirect(url_for('listAll'))
@@ -29,10 +29,14 @@ def index():
                         cur = conn.cursor()
                         cur.execute("select * from VIDEOGAMES where name like '%{}%'".format(name))
                         rows = cur.fetchall()
-                        if not rows:
-                                return render_template("error.html")
+                        if name=="":
+                                return render_template("index.html", message="Please enter a game")
+
                         results = data_cleaning(rows)
-                        return render_template("index.html", results=results['results'])
+                        if results['results'] == []:
+                                return render_template("index.html", message="No game found with that name")
+
+                        return render_template("index.html", message=None, results=results['results'])
 
 
         return render_template("index.html")
@@ -96,10 +100,16 @@ def data_cleaning(rows):
                 cur.execute('select language from LANGUAGES where id in (%s)' % ','.join('?'*len(lang_ids)), lang_ids)
                 langs = cur.fetchall()
                 langs = [x[0] for x in langs]
+                revLangs = "|| "
+                for languages in langs:
+                        revLangs += languages+" || "
                 genre_ids = row[4].split(", ")
                 cur.execute('select genre from GENRES where id in (%s)' % ','.join('?'*len(genre_ids)), genre_ids)
                 genres = cur.fetchall()
                 genres = [x[0] for x in genres]
-                result = {'steam_id': row[0], 'name': row[1], 'release_date': row[2], 'languages':langs, 'genres': genres}
+                revGenres = "|| "
+                for gs in genres:
+                        revGenres += gs+" || "
+                result = {'steam_id': row[0], 'name': row[1], 'release_date': row[2], 'languages':revLangs, 'genres': revGenres}
                 return_json['results'].append(result)
         return return_json
